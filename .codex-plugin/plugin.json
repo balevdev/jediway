@@ -1,0 +1,23 @@
+{
+  "name": "jediway",
+  "version": "0.3.0",
+  "description": "One way of working for coding agents: engineering taste as skills, roles as skills, and a grounded spec workflow that composes them. Any language, any stack.",
+  "author": { "name": "balevdev", "url": "https://github.com/balevdev" },
+  "repository": "https://github.com/balevdev/jediway",
+  "license": "MIT",
+  "keywords": ["workflow", "spec", "subagents", "review", "audit", "architecture", "taste", "deep-modules"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "jediway",
+    "shortDescription": "Grounded specs, disposable role agents, Staff+ taste",
+    "longDescription": "jediway gives a coding agent one way of working. Taste lives in plain skills (universal, frontend, backend). Roles (Planner, Implementer, Verifier, Auditor) are plain skills too. The way skill grounds a repo, writes a command-checkable spec, composes each child prompt from the same template, and judges the evidence. Build, review, and audit share the pipeline.",
+    "developerName": "balevdev",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "$way build: add rate limiting to the login endpoint",
+      "$way review: judge the open diff against repo conventions",
+      "$way audit: Staff+ architecture audit of this repository"
+    ]
+  }
+}

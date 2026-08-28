@@ -1,0 +1,13 @@
+{
+  "name": "jediway",
+  "owner": { "name": "balevdev", "url": "https://github.com/balevdev" },
+  "metadata": { "description": "Single-plugin marketplace for jediway: one way of working for coding agents." },
+  "plugins": [
+    {
+      "name": "jediway",
+      "source": "./",
+      "description": "Taste, roles, and a grounded spec workflow for coding agents. Any language, any stack.",
+      "category": "development"
+    }
+  ]
+}
