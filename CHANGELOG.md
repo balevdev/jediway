@@ -1,27 +1,26 @@
 # Changelog
 
+## 0.4.0
+
+The plugin does one thing now: brainstorm, plan, implement, verify, in that order.
+
+- **The main session is a pure orchestrator.** It no longer grounds the repository, runs gates, records baselines, reads diffs, or judges. Grounding moved into the new Planner agent; judging ends with the Verifier. The orchestrator's context stays small, which is where most of the speed comes from.
+- **One pipeline, no modes.** The build, review, and audit branches are gone, along with the Scout and Auditor roles. A review is a Verifier run; an audit is a question you ask directly.
+- **The task is never split.** Work units, parallel Implementers, and merge points are removed. However large a task is, one Implementer does all of it.
+- **Children are briefed, not templated.** Each dispatch is a four-line brief: phase, the Spec as contract, at most three carried facts the next child cannot read from disk, and what it must return. Facts carry; opinions, plan text, and diffs do not.
+- **No prompt composition.** `scripts/compose.sh`, the dispatch template, and the Role block indirection are deleted. Children read `.jediway/spec.md` themselves; a dispatch message is one line. The "show the composed prompt" stop is gone with it.
+- **No Judge round.** The Verifier is the last word, and one retry is the limit.
+- Deleted: `scripts/` (compose, gates, lint, lint-spec), the `scout`, `auditor`, `implementer`, `verifier`, `frontend`, and `backend` skills, the `way/references/` specs and template, the `build`, `review`, and `audit` commands.
+- Added: `agents/planner.md` and the single `/jedi` command.
+- `taste` keeps its judgement and drops to an eight-line Creed, inlined in all three agents; the Planner and Verifier invoke the skill for the depth.
+- **Every role has a reading budget.** The Planner locates with grep and opens only what it will cite; the Implementer's reading list is the plan's cited paths; the Verifier reads the diff and the files it touches. Repeated repository surveys were the largest remaining token cost.
+- Plans must re-check each cited `path:line` before it is written. A stale line number was the pipeline's most common failure.
+- Scope arrives coarse from the orchestrator, which cannot see the repository, and the Planner narrows it to real paths and reports what it narrowed to at the checkpoint.
+- The Implementer rejects a defective Spec (no Plan, or no proof-of-effect criterion with a baseline) before its first edit, replacing the deleted spec lint with a check that costs one message instead of a round.
+- Added `scripts/check.sh`: an edit-time guard that fails when the Creed drifts between `taste` and the three agents, when a dispatched role has no agent file, or when the manifests disagree. It never runs inside the pipeline.
+
 ## 0.3.0
 
-- lint-spec.sh: the Spec is judged by a shell before compose, the same bar the Spec applies to code. lint.sh runs it against the example Spec.
-- The Master argues the strongest case its own Spec misses the Mission before composing; the Spec now has an adversary.
-- The Spec scales down: a small task writes `none` in Non-goals, Domain, Invariants, and Match and plans in a step or two. The chain never shrinks.
-- Ground baselines only the gates cited as acceptance criteria.
-- Verifier: review mode (no proof-of-effect criterion) asks whether the diff carries a check that would fail without it; fresh installs only when the diff touches dependency or build manifests.
-- Auditor: a Scope too large for one child splits into units, one Auditor each.
-- Honest about Codex: read-only roles are convention there, not enforcement; the README and way say so.
-- Handoff naming fixed: the Handoff section is five lines, `.jediway/handoff.md` carries the full previous report.
-- taste: comments state what the code cannot show; optimize with a measurement in hand or not at all.
-
-## 0.2.0
-
-- compose.sh: child prompts are assembled mechanically from taste's Creed, the Spec file, the handoff, and the role's fenced Role block. No model retypes any of it.
-- gates.sh: candidate gate commands and CI files for Ground.
-- Planner child removed; the Master writes the Plan into the Spec with the Ground context it already has. Scout added for repos too large to ground in one pass.
-- Judge reproduces the Scope and proof-of-effect criteria and reads the diff; full re-run only on disagreement or UNVERIFIED.
-- Roles carry a single fenced Role block plus Master notes; no second instruction source for children.
-- Creed reduced to ten lines. Placement ladders, discovery questions, and error-state rules each live in exactly one skill.
-- Descriptions capped at 70 words, skills at 120 lines; lint composes every role against spec.example.md as proof of effect.
-
-## 0.1.0
-
-First cut.
+- Roles as skills, composed mechanically into child prompts from one template.
+- `way` skill with build, review, and audit modes.
+- Spec lint and plugin self-check scripts.

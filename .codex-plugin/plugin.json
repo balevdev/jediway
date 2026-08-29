@@ -1,23 +1,38 @@
 {
   "name": "jediway",
-  "version": "0.3.0",
-  "description": "One way of working for coding agents: engineering taste as skills, roles as skills, and a grounded spec workflow that composes them. Any language, any stack.",
-  "author": { "name": "balevdev", "url": "https://github.com/balevdev" },
+  "version": "0.4.0",
+  "description": "One pipeline for coding agents: brainstorm a spec, then Planner, Implementer, Verifier, one after another. The main session only orchestrates. Any language, any stack.",
+  "author": {
+    "name": "balevdev",
+    "url": "https://github.com/balevdev"
+  },
   "repository": "https://github.com/balevdev/jediway",
   "license": "MIT",
-  "keywords": ["workflow", "spec", "subagents", "review", "audit", "architecture", "taste", "deep-modules"],
+  "keywords": [
+    "workflow",
+    "spec",
+    "subagents",
+    "pipeline",
+    "planning",
+    "review",
+    "taste",
+    "deep-modules"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "jediway",
-    "shortDescription": "Grounded specs, disposable role agents, Staff+ taste",
-    "longDescription": "jediway gives a coding agent one way of working. Taste lives in plain skills (universal, frontend, backend). Roles (Planner, Implementer, Verifier, Auditor) are plain skills too. The way skill grounds a repo, writes a command-checkable spec, composes each child prompt from the same template, and judges the evidence. Build, review, and audit share the pipeline.",
+    "shortDescription": "Brainstorm, plan, implement, verify. One pipeline, no detours.",
+    "longDescription": "jediway gives a coding agent one way of working, and only one. The main session brainstorms the task with you, writes a short spec, and then dispatches three children in a fixed order: a Planner that grounds the repo and writes a cited plan, an Implementer that executes the whole plan and runs the acceptance criteria, and a Verifier that reproduces the evidence and has the last word. The orchestrator never reads the repository, never verifies, and never splits the task.",
     "developerName": "balevdev",
     "category": "Developer Tools",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "defaultPrompt": [
-      "$way build: add rate limiting to the login endpoint",
-      "$way review: judge the open diff against repo conventions",
-      "$way audit: Staff+ architecture audit of this repository"
+      "/jedi add rate limiting to the login endpoint",
+      "/jedi fix the flaky checkout test",
+      "/jedi extract the pricing rules out of the order service"
     ]
   }
 }

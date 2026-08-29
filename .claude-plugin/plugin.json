@@ -2,10 +2,22 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "jediway",
   "displayName": "jediway",
-  "version": "0.3.0",
-  "description": "One way of working for coding agents: engineering taste as skills, roles as skills, and a grounded spec workflow that composes them. Any language, any stack.",
-  "author": { "name": "balevdev", "url": "https://github.com/balevdev" },
+  "version": "0.4.0",
+  "description": "One pipeline for coding agents: brainstorm a spec, then Planner, Implementer, Verifier, one after another. The main session only orchestrates. Any language, any stack.",
+  "author": {
+    "name": "balevdev",
+    "url": "https://github.com/balevdev"
+  },
   "repository": "https://github.com/balevdev/jediway",
   "license": "MIT",
-  "keywords": ["workflow", "spec", "subagents", "review", "audit", "architecture", "taste", "deep-modules"]
+  "keywords": [
+    "workflow",
+    "spec",
+    "subagents",
+    "pipeline",
+    "planning",
+    "review",
+    "taste",
+    "deep-modules"
+  ]
 }
